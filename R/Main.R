@@ -86,7 +86,7 @@ execute <- function(
   outcomeIdsPath <- system.file(
     "settings",
     "map_outcomes.csv",
-    package = "AceBeta9Outcomes"
+    package = "HteFramework"
   )
 
   mapOutcomes <- read.csv(outcomeIdsPath) %>%
@@ -99,7 +99,7 @@ execute <- function(
     system.file(
       "settings",
       "negative_controls.csv",
-      package = "AceBeta9Outcomes"
+      package = "HteFramework"
     )
   )
 
@@ -107,7 +107,7 @@ execute <- function(
     system.file(
       "settings",
       "excluded_covariate_concept_ids.csv",
-      package = "AceBeta9Outcomes"
+      package = "HteFramework"
     )
   ) %>%
     dplyr::pull(conceptId)
@@ -123,7 +123,7 @@ execute <- function(
       system.file(
         "settings",
         "map_treatments.csv",
-        package = "AceBeta9Outcomes"
+        package = "HteFramework"
       )
     ),
     mapOutcomes = mapOutcomes,

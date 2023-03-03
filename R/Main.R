@@ -8,13 +8,18 @@
 #' @param analysisId Unique analysis identifier
 #' @param databaseSettings Settings for locating the data in the database. Should
 #' be created with the \code{\link[RiskStratifiedEstimation]{createDatabaseSettings}}
-#' function
+#' function.
+#' @param getDataSettings Settings for the extraction of the data from the database. If
+#' \code{extractData = FALSE} then it should contain the directories where the
+#' generated \code{plpData} and \code{cohortMethodData} are stored. Should be created
+#' with \code{\link[RiskStratifiedEstimation]{createGetDataSettings}}.
 #' @param maxDaysAtRisk The maximum days at risk to be used for the analysis.
 #' If patients have longer time at risk, they will be censored at the provided value
 #' @param treatmentCohortId The ID of the treatment cohort in the table of the database
 #' where exposures are stored
 #' @param comparatorCohortId  The ID of the comparator cohort in the table of the
 #' database where exposures are stored
+#' @param extractData Should the cohorts be extracted from the database?
 #' @param balanceThreads Number of parallel threads to be used for the evaluation
 #' of covariate balance
 #' @param negativeControlThreads Number of parallel threads to be used for the
@@ -34,9 +39,11 @@ execute <- function(
   connectionDetails,
   analysisId,
   databaseSettings,
+  getDataSettings = NULL,
   maxDaysAtRisk,
   treatmentCohortId,
   comparatorCohortId,
+  extractData = TRUE,
   balanceThreads = 1,
   negativeControlThreads = 1,
   fitOutcomeModelsThreads = 1,
@@ -86,7 +93,7 @@ execute <- function(
   outcomeIdsPath <- system.file(
     "settings",
     "map_outcomes.csv",
-    package = "AceBeta9Outcomes"
+    package = "HteFramework"
   )
 
   mapOutcomes <- read.csv(outcomeIdsPath) %>%
@@ -99,7 +106,7 @@ execute <- function(
     system.file(
       "settings",
       "negative_controls.csv",
-      package = "AceBeta9Outcomes"
+      package = "HteFramework"
     )
   )
 
@@ -107,7 +114,7 @@ execute <- function(
     system.file(
       "settings",
       "excluded_covariate_concept_ids.csv",
-      package = "AceBeta9Outcomes"
+      package = "HteFramework"
     )
   ) %>%
     dplyr::pull(conceptId)
@@ -123,7 +130,7 @@ execute <- function(
       system.file(
         "settings",
         "map_treatments.csv",
-        package = "AceBeta9Outcomes"
+        package = "HteFramework"
       )
     ),
     mapOutcomes = mapOutcomes,
@@ -134,14 +141,16 @@ execute <- function(
     saveDirectory = saveDirectory
   )
 
-  getDataSettings <- RiskStratifiedEstimation::createGetDataSettings(
-    getPlpDataSettings = RiskStratifiedEstimation::createGetPlpDataArgs(
-      washoutPeriod = 365
-    ),
-    getCmDataSettings = RiskStratifiedEstimation::createGetCmDataArgs(
-      washoutPeriod = 365
+  if (is.null(getDataSettings)) {
+    getDataSettings <- RiskStratifiedEstimation::createGetDataSettings(
+      getPlpDataSettings = RiskStratifiedEstimation::createGetPlpDataArgs(
+        washoutPeriod = 365
+      ),
+      getCmDataSettings = RiskStratifiedEstimation::createGetCmDataArgs(
+        washoutPeriod = 365
+      )
     )
-  )
+  }
 
   covariateSettings <-
     RiskStratifiedEstimation::createGetCovariateSettings(
@@ -283,6 +292,15 @@ execute <- function(
   cohortDatabaseSchema <- databaseSettings$cohortDatabaseSchema
   outputFolder <- analysisSettings$saveDirectory
 
+  if (extractData) {
+    generateAllCohorts(
+      connectionDetails = connectionDetails,
+      cdmDatabaseSchema = cdmDatabaseSchema,
+      cohortDatabaseSchema = cohortDatabaseSchema,
+      indicationId = "Hypertension",
+      outputFolder = outputFolder
+    )
+  }
 
   RiskStratifiedEstimation::runRiskStratifiedEstimation(
     connectionDetails = connectionDetails,

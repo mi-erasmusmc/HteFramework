@@ -7,6 +7,21 @@ Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: Apache License (>= 2)
+Depends: dplyr,
+         magrittr
+Imports: CohortMethod,
+         PatientLevelPrediction,
+         Cyclops,
+         FeatureExtraction,
+         Legend,
+         RiskStratifiedEstimation,
+         crayon
 Encoding: UTF-8
+Remotes: ohdsi/CohortMethod,
+         ohdsi/PatientLevelPrediction,
+         ohdsi/Cyclops,
+         ohdsi/FeatureExtraction,
+         ohdsi/Legend,
+         ohdsi/RiskStratifiedEstimation
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3

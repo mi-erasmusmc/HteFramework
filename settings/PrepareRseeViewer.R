@@ -1,17 +1,19 @@
+library(RiskStratifiedEstimation)
+
 dirs <- list.dirs(
-  "~/Documents/Projects/framework/AceBeta9Outcomes/results",
+  "/path/to/results/results",
   recursive = FALSE
 )
 
 dirs <- list(
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/ccae_with_cvd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/mdcd_with_cvd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/ccae_without_cvd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/mdcd_without_cvd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/mdcr_without_cvd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/mdcd_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/mdcr_730_analysis",
-  "/home/arekkas/Documents/Projects/framework/AceBeta9Outcomes/results/ccae_730_analysis"
+  "/path/to/results/ccae_with_cvd_730_analysis",
+  "/path/to/results/mdcd_with_cvd_730_analysis",
+  "/path/to/results/ccae_without_cvd_730_analysis",
+  "/path/to/results/mdcd_without_cvd_730_analysis",
+  "/path/to/results/mdcr_without_cvd_730_analysis",
+  "/path/to/results/mdcd_730_analysis",
+  "/path/to/results/mdcr_730_analysis",
+  "/path/to/results/ccae_730_analysis"
 )
 
 analysisSettingsList <- list()
@@ -25,4 +27,4 @@ prepareMultipleRseeViewer(
   saveDirectory = "export"
 )
 
-rseeViewer("~/Documents/Projects/framework/AceBeta9Outcomes/export/multipleRseeAnalyses/")
+rseeViewer("/path/to/project/directory/export/multipleRseeAnalyses/")

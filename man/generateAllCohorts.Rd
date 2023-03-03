@@ -2,17 +2,29 @@
 % Please edit documentation in R/GenerateCohorts.R
 \name{generateAllCohorts}
 \alias{generateAllCohorts}
-\title{Genarates all the cohorts of the LEGEND-hyperetnsion study}
+\title{Genarates all the cohorts of the LEGEND-hypertension study}
 \usage{
 generateAllCohorts(
   connectionDetails,
   cdmDatabaseSchema,
   cohortDatabaseSchema,
-  oracleTempSchema = NULL,
   indicationId = "Hypertension",
   outputFolder
 )
 }
+\arguments{
+\item{connectionDetails}{Database connection details. Should be created
+with \code{\link[DatabaseConnector]{createConnectionDetails}}.}
+
+\item{cdmDatabaseSchema}{The database schema where the database is stored}
+
+\item{cohortDatabaseSchema}{The database schema where the cohort tables will be stored.}
+
+\item{indicationId}{Can be "Hypertension" or "Depression".Here it
+should be the former}
+
+\item{outputFolder}{Name of local folder to place results.}
+}
 \description{
-Genarates all the cohorts of the LEGEND-hyperetnsion study
+Genarates all the cohorts of the LEGEND-hypertension study
 }

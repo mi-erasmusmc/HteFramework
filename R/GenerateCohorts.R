@@ -1,10 +1,18 @@
-#' Genarates all the cohorts of the LEGEND-hyperetnsion study
+#' Genarates all the cohorts of the LEGEND-hypertension study
+#'
+#' @param connectionDetails    Database connection details. Should be created
+#'                             with \code{\link[DatabaseConnector]{createConnectionDetails}}.
+#' @param cdmDatabaseSchema    The database schema where the database is stored
+#' @param cohortDatabaseSchema The database schema where the cohort tables will be stored.
+#' @param indicationId         Can be "Hypertension" or "Depression".Here it
+#'                             should be the former
+#' @param outputFolder    	    Name of local folder to place results.
+#'
 #' @export
 generateAllCohorts <- function(
   connectionDetails,
   cdmDatabaseSchema,
   cohortDatabaseSchema,
-  oracleTempSchema = NULL,
   indicationId = "Hypertension",
   outputFolder
 ) {
@@ -12,7 +20,6 @@ generateAllCohorts <- function(
     connectionDetails = connectionDetails,
     cdmDatabaseSchema = cdmDatabaseSchema,
     cohortDatabaseSchema = cohortDatabaseSchema,
-    oracleTempSchema = NULL,
     indicationId = indicationId,
     outputFolder = outputFolder
   )

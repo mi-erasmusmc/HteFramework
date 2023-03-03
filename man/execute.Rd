@@ -8,9 +8,11 @@ execute(
   connectionDetails,
   analysisId,
   databaseSettings,
+  getDataSettings = NULL,
   maxDaysAtRisk,
   treatmentCohortId,
   comparatorCohortId,
+  extractData = TRUE,
   balanceThreads = 1,
   negativeControlThreads = 1,
   fitOutcomeModelsThreads = 1,
@@ -28,7 +30,12 @@ the \code{\link[DatabaseConnector]{createConnectionDetails}} function}
 
 \item{databaseSettings}{Settings for locating the data in the database. Should
 be created with the \code{\link[RiskStratifiedEstimation]{createDatabaseSettings}}
-function}
+function.}
+
+\item{getDataSettings}{Settings for the extraction of the data from the database. If
+\code{extractData = FALSE} then it should contain the directories where the
+generated \code{plpData} and \code{cohortMethodData} are stored. Should be created
+with \code{\link[RiskStratifiedEstimation]{createGetDataSettings}}.}
 
 \item{maxDaysAtRisk}{The maximum days at risk to be used for the analysis.
 If patients have longer time at risk, they will be censored at the provided value}
@@ -38,6 +45,8 @@ where exposures are stored}
 
 \item{comparatorCohortId}{The ID of the comparator cohort in the table of the
 database where exposures are stored}
+
+\item{extractData}{Should the cohorts be extracted from the database?}
 
 \item{balanceThreads}{Number of parallel threads to be used for the evaluation
 of covariate balance}

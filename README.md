@@ -14,9 +14,10 @@ extraction of the LEGEND cohorts. Install the package using:
 ```r
 devtools::install()
 ```
-Make sure to skip any of the updates suggested.
+Make sure to skip any updates, if suggested.
 
 
 ## Reproduce the main analyses
 
-To reproduce the main analyses open the file `settings/Run.R` and follow the instructions.
+To reproduce the main analyses open the file `settings/Run.R` and follow the
+instructions.

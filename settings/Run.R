@@ -16,11 +16,25 @@ databaseSettings <- RiskStratifiedEstimation::createDatabaseSettings(
   mergedCohortTable = "xxxx" # The table in the resultsDatabaseSchema where the merged treatment and comparator cohorts will be stored
 )
 
+# -------------------------------------------------------------------------------
+# If extractData = FALSE, need to supply the location of the locally stored data.
+#
+# getDataSettings <- RiskStratifiedEstimation::createGetDataSettings(
+#   plpDataFolder = "/path/to/plpData/folder",
+#   cohortMethodDataFolder = "/path/to/cohortMethodData/folder"
+# )
+#
+# Replace getDataSettings = NULL below with the above code
+# -------------------------------------------------------------------------------
+
 
 execute(
   analysisId = "xxxx", # Name of the analysis
+  extractData = TRUE,
   connectionDetails = connectionDetails,
   databaseSettings = databaseSettings,
+  getDataSettings = NULL,
+  getDataSettings = TRUE,
   treatmentCohortId = xxxx,  # The ID of the treatment cohort in the exposure table
   comparatorCohortId = xxxx, # The ID of the comparator cohort in the exposureTable
   maxDaysAtRisk = maxDaysAtRisk,

@@ -1,0 +1,14 @@
+outcome_id,outcome_name,stratification_outcome
+2,Acute myocardial infarction,1
+9,Gastrointestinal bleeding,0
+11,Hyponatremia,0
+12,Hypotension,0
+18,Stroke,0
+28,Acute renal failure,0
+32,Angioedema,0
+36,Cardiovascular disease (composite),1
+39,Kidney disease,0
+41,Cough,0
+52,Hospitalization with heart failure,0
+54,Hyperkalemia,0
+55,Hypokalemia,0

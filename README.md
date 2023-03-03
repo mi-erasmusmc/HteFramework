@@ -1,4 +1,4 @@
-# A standardized risk-based framework the evaluation of treatment effect heterogeneity
+# A standardized risk-based framework for the evaluation of treatment effect heterogeneity
 
 ## How to install
 

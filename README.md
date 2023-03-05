@@ -19,5 +19,5 @@ Make sure to skip any updates, if suggested.
 
 ## Reproduce the main analyses
 
-To reproduce the main analyses open the file `settings/Run.R` and follow the
+To reproduce the main analyses open the file [settings/Run.R](https://github.com/mi-erasmusmc/HteFramework/blob/main/settings/Run.R) and follow the
 instructions.

@@ -16,6 +16,10 @@ databaseSettings <- RiskStratifiedEstimation::createDatabaseSettings(
   mergedCohortTable = "xxxx" # The table in the resultsDatabaseSchema where the merged treatment and comparator cohorts will be stored
 )
 
+
+# Specify the details for connecting to the database
+connectionDetails <- DatabaseConnector::createConnectionDetails()
+
 # -------------------------------------------------------------------------------
 # If extractData = FALSE, need to supply the location of the locally stored data.
 #
@@ -34,7 +38,7 @@ execute(
   connectionDetails = connectionDetails,
   databaseSettings = databaseSettings,
   getDataSettings = NULL,
-  getDataSettings = TRUE,
+  extractData = TRUE,
   treatmentCohortId = xxxx,  # The ID of the treatment cohort in the exposure table
   comparatorCohortId = xxxx, # The ID of the comparator cohort in the exposureTable
   maxDaysAtRisk = maxDaysAtRisk,
